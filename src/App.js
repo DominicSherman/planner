@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './css/App.css';
 import moment from 'moment';
-import {green, lightGray, white} from './constants/style-variables';
+import {green, white} from './constants/style-variables';
 
 export default class App extends Component {
     render() {
