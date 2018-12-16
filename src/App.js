@@ -1,29 +1,42 @@
 import React, {Component} from 'react';
 import './css/App.css';
-import moment from 'moment';
-import {green, white} from './constants/style-variables';
+import './css/Flex.css';
+import './css/Buttons.css';
+import WeekView from './views/WeekView';
+import {DAY, WEEK} from './constants/view-types';
+import DayView from './views/DayView';
 
 export default class App extends Component {
-    render() {
-        let days = [];
+    constructor(props) {
+        super(props);
 
-        for (let i = 1; i <= 7; i++) {
-            days = [...days, moment().isoWeekday(i)];
+        this.state = {
+            view: WEEK
         }
+    }
 
-        days.forEach((day) => console.log(day.format('dddd, MMMM Do')));
-
+    render() {
         return (
-            <div className={'App'}>
+            <div>
+                <div className={'App-buttonWrapper row spaceEvenly'}>
+                    <div
+                        className={'Buttons-mediumFont'}
+                        onClick={() => this.setState({view: WEEK})}
+                    >
+                        {'Week'}
+                    </div>
+                    <div
+                        className={'Buttons-mediumFont'}
+                        onClick={() => this.setState({view: DAY})}
+                    >
+                        {'Day'}
+                    </div>
+                </div>
                 {
-                    days.map((day) =>
-                        <div
-                            className={'App-day'}
-                            style={{backgroundColor: day.get('day') === moment().get('day') ? green : white}}
-                        >
-                            <p>{day.format('dddd, MMMM Do')}</p>
-                        </div>
-                    )
+                    this.state.view === WEEK ?
+                        <WeekView/>
+                        :
+                        <DayView/>
                 }
             </div>
         );

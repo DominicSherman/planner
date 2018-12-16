@@ -1,0 +1,34 @@
+.Buttons-largeFont, .Buttons-mediumFont, .Buttons-smallFont {
+    background-color: #678da2;
+    color: white;
+    text-align: center;
+    border: #678da2 solid 2px;
+    border-radius: 6px;
+    font-size: 1.0vw;
+}
+
+.Buttons-largeFont:hover, .Buttons-mediumFont:hover, .Buttons-smallFont:hover {
+    background-color: white;
+    color: #678da2;
+    border: #678da2 solid 2px;
+    cursor: pointer;
+}
+
+.Buttons-largeFont, .Buttons-mediumFont {
+    width: 15%;
+    height: 80%;
+    padding: 2% 2% 2% 2%;
+}
+
+.Buttons-largeFont {
+    font-size: 3vw;
+}
+
+.Buttons-mediumFont {
+    font-size: 1.5vw;
+}
+
+.Buttons-smallFont {
+    width: 15%;
+    padding: 1.5% 1% 1% 1%;
+}

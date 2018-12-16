@@ -1,0 +1,15 @@
+.DayView {
+    text-align: center;
+}
+
+.DayView-day {
+    align-items: center;
+    border: 1px solid black;
+    height: 100vh;
+    min-width: 100vw;
+}
+
+.DayView-dayHeader {
+    border-bottom: 1px solid black;
+    width: 100%;
+}
