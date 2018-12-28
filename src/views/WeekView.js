@@ -18,12 +18,11 @@ export default class WeekView extends Component {
                             className={'WeekView-day'}
                         >
                             <div className={'WeekView-dayHeader'}>
-                                {
-                                    day.get('day') === moment().get('day') ?
-                                        <b><p>{day.format('dddd, MMMM Do')}</p></b>
-                                        :
-                                        <p>{day.format('dddd, MMMM Do')}</p>
-                                }
+                                <p
+                                    style={day.get('day') === moment().get('day') ? {fontWeight: 'bold'} : {fontWeight: 'regular'}}
+                                >
+                                    {day.format('dddd, MMMM Do')}
+                                </p>
                             </div>
                         </div>
                     )

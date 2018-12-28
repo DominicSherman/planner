@@ -1,0 +1,25 @@
+.MonthView-wrapper {
+    align-items: center;
+    padding: 1%;
+}
+
+.MonthView-monthButton {
+    align-items: center;
+    cursor: pointer;
+}
+
+.MonthView-headerWrapper {
+    width: 100%;
+    padding-bottom: 2%;
+}
+
+.MonthView-dayHeaderWrapper, .MonthView-dayWrapper {
+    width: calc(92vw/7);
+    justify-content: center;
+    padding: 5px;
+}
+
+.MonthView-dayWrapper {
+    border: 1px solid;
+    height: calc(100vw/7);
+}
