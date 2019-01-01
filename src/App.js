@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
+
 import './css/App.css';
 import './css/Flex.css';
 import './css/Buttons.css';
@@ -12,44 +14,40 @@ export default class App extends Component {
         super(props);
 
         this.state = {
+            dropdownOpen: false,
             view: MONTH
         }
     }
 
+    toggle = () => this.setState((prevState) => ({dropdownOpen: !prevState.dropdownOpen}));
+
     render() {
         return (
             <div>
-                <div className={'App-buttonWrapper row spaceEvenly'}>
-                    <div
-                        className={'Buttons-mediumFont'}
-                        onClick={() => this.setState({view: MONTH})}
+                <div className={'App-menuWrapper'}>
+                    <Dropdown
+                        isOpen={this.state.dropdownOpen}
+                        toggle={this.toggle}
                     >
-                        {'Month'}
-                    </div>
-                    <div
-                        className={'Buttons-mediumFont'}
-                        onClick={() => this.setState({view: WEEK})}
-                    >
-                        {'Week'}
-                    </div>
-                    <div
-                        className={'Buttons-mediumFont'}
-                        onClick={() => this.setState({view: DAY})}
-                    >
-                        {'Day'}
-                    </div>
+                        <DropdownToggle caret>Menu</DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem onClick={() => this.setState({view: MONTH})}>Month View</DropdownItem>
+                            <DropdownItem onClick={() => this.setState({view: WEEK})}>Week View</DropdownItem>
+                            <DropdownItem onClick={() => this.setState({view: DAY})}>Day View</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
                 </div>
                 {
                     this.state.view === MONTH &&
-                        <MonthView/>
+                    <MonthView/>
                 }
                 {
                     this.state.view === WEEK &&
-                        <WeekView/>
+                    <WeekView/>
                 }
                 {
                     this.state.view === DAY &&
-                        <DayView/>
+                    <DayView/>
                 }
             </div>
         );

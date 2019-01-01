@@ -55,7 +55,6 @@ export default class MonthView extends Component {
     };
 
     render() {
-        console.log('this.state.lengthOfFirstWeek', this.state.lengthOfFirstWeek);
         return (
             this.state.daysOfMonth.length ?
                 <div className={'MonthView-wrapper column'}>
@@ -78,7 +77,10 @@ export default class MonthView extends Component {
                             <h3>{`${MONTHS[this.state.nextMonth.month()]} >`}</h3>
                         </div>
                     </div>
-                    <div className={'row'}>
+                    <div
+                        className={'row spaceBetween'}
+                        style={{width: '100%'}}
+                    >
                         {
                             [...Array(7).keys()].map((value) =>
                                 <div
@@ -86,24 +88,23 @@ export default class MonthView extends Component {
                                     key={value}
                                 >
                                     <h3>{WEEKDAYS[value]}</h3>
-                                </div>)
+                                </div>
+                            )
                         }
                     </div>
-                    <div>
-                        {
-                            [...Array(6).keys()].map((w) => {
-                                const firstIndex = w === 0 ? 0 : 7 * (w - 1) + this.state.lengthOfFirstWeek;
-                                const secondIndex = 7 * w + this.state.lengthOfFirstWeek;
+                    {
+                        [...Array(6).keys()].map((w) => {
+                            const firstIndex = w === 0 ? 0 : 7 * (w - 1) + this.state.lengthOfFirstWeek;
+                            const secondIndex = 7 * w + this.state.lengthOfFirstWeek;
 
-                                return (
-                                    <WeekOfMonth
-                                        daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
-                                        key={w}
-                                    />
-                                );
-                            })
-                        }
-                    </div>
+                            return (
+                                <WeekOfMonth
+                                    daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
+                                    key={w}
+                                />
+                            );
+                        })
+                    }
                 </div>
                 :
                 null

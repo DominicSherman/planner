@@ -9,12 +9,12 @@
 }
 
 .MonthView-headerWrapper {
-    width: 100%;
+    width: 95%;
     padding-bottom: 2%;
 }
 
 .MonthView-dayHeaderWrapper, .MonthView-dayWrapper {
-    width: calc(92vw/7);
+    width: calc(99vw/7);
     justify-content: center;
     padding: 5px;
 }

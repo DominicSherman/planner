@@ -11,18 +11,14 @@ export default class WeekOfMonth extends Component {
 
         return (
             daysToDisplay.length ?
-                <div
-                    className={'row'}
-                >
+                <div className={'row'}>
                     {
                         daysToDisplay.map(
                             (day, i) =>
                                 <div
                                     className={'MonthView-dayWrapper'}
                                     key={i}
-                                    style={{
-                                        borderColor: day ? 'black' : 'white'
-                                    }}
+                                    style={{borderColor: day ? 'black' : 'white'}}
                                 >
                                     {
                                         day &&
