@@ -11,36 +11,38 @@ export default class MonthView extends Component {
         super(props);
 
         this.state = {
-            prevMonth: 0,
-            currMonth: 0,
-            nextMonth: 0,
+            prevMonth: {},
+            currMonth: {},
+            nextMonth: {},
             daysOfMonth: [],
             lengthOfFirstWeek: 0
         }
     }
 
     componentDidMount() {
-        this.setCurrMonth(moment().month());
+        this.setCurrMonth(moment());
     }
 
     setDaysOfMonth = (month) => {
         let daysOfMonth = [];
 
         for (let i = 1; i <= 31; i++) {
-            if (moment().month(month).date(i).get('month') === month) {
-                daysOfMonth = [...daysOfMonth, moment().month(month).date(i)];
+            if (moment(month).date(i).get('month') === month.month()) {
+                daysOfMonth = [...daysOfMonth, moment(month).date(i)];
             }
         }
 
         this.setState({daysOfMonth});
-        this.setState({lengthOfFirstWeek: 8 - daysOfMonth[0].day()});
+        this.setState({lengthOfFirstWeek: 8 - (daysOfMonth[0].day() === 0 ? 7 : daysOfMonth[0].day())});
     };
 
     setCurrMonth = (currMonth) => {
-        this.setState({prevMonth: moment().month(currMonth).subtract(1, 'M').month()});
+        const prevMonth = moment(currMonth).subtract(1, 'M');
+        const nextMonth = moment(currMonth).add(1, 'M');
+
         this.setState({currMonth});
-        console.log(moment().month(currMonth).add(1, 'M'));
-        this.setState({nextMonth: moment().month(currMonth).add(1, 'M').month()});
+        this.setState({prevMonth});
+        this.setState({nextMonth});
         this.setDaysOfMonth(currMonth);
     };
 
@@ -53,6 +55,7 @@ export default class MonthView extends Component {
     };
 
     render() {
+        console.log('this.state.lengthOfFirstWeek', this.state.lengthOfFirstWeek);
         return (
             this.state.daysOfMonth.length ?
                 <div className={'MonthView-wrapper column'}>
@@ -63,22 +66,25 @@ export default class MonthView extends Component {
                             className={'MonthView-monthButton row center'}
                             onClick={this.decrementMonth}
                         >
-                            <h3>{`< ${MONTHS[this.state.prevMonth]}`}</h3>
+                            <h3>{`< ${MONTHS[this.state.prevMonth.month()]}`}</h3>
                         </div>
                         <h1>
-                            {MONTHS[this.state.currMonth]}
+                            {`${MONTHS[this.state.currMonth.month()]}, ${this.state.currMonth.year()}`}
                         </h1>
                         <div
                             className={'MonthView-monthButton row center'}
                             onClick={this.incrementMonth}
                         >
-                            <h3>{`${MONTHS[this.state.nextMonth]} >`}</h3>
+                            <h3>{`${MONTHS[this.state.nextMonth.month()]} >`}</h3>
                         </div>
                     </div>
                     <div className={'row'}>
                         {
                             [...Array(7).keys()].map((value) =>
-                                <div className={'MonthView-dayHeaderWrapper row'}>
+                                <div
+                                    className={'MonthView-dayHeaderWrapper row'}
+                                    key={value}
+                                >
                                     <h3>{WEEKDAYS[value]}</h3>
                                 </div>)
                         }
@@ -92,6 +98,7 @@ export default class MonthView extends Component {
                                 return (
                                     <WeekOfMonth
                                         daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
+                                        key={w}
                                     />
                                 );
                             })

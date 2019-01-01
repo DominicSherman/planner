@@ -16,9 +16,10 @@ export default class WeekOfMonth extends Component {
                 >
                     {
                         daysToDisplay.map(
-                            (day) =>
+                            (day, i) =>
                                 <div
                                     className={'MonthView-dayWrapper'}
+                                    key={i}
                                     style={{
                                         borderColor: day ? 'black' : 'white'
                                     }}
@@ -26,7 +27,7 @@ export default class WeekOfMonth extends Component {
                                     {
                                         day &&
                                         <p
-                                            style={day.get('date') === moment().get('date') ? {fontWeight: 'bold'} : {fontWeight: 'regular'}}
+                                            style={day.format('M-D-Y') === moment().format('M-D-Y') ? {fontWeight: 'bold'} : {fontWeight: 'regular'}}
                                         >
                                             {day.format('Do')}
                                         </p>
