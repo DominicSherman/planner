@@ -11,7 +11,9 @@ export default class WeekOfMonth extends Component {
 
         return (
             daysToDisplay.length ?
-                <div className={'row'}>
+                <div
+                    className={'row'}
+                >
                     {
                         daysToDisplay.map(
                             (day, i) =>

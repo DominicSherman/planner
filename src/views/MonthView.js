@@ -92,19 +92,21 @@ export default class MonthView extends Component {
                             )
                         }
                     </div>
-                    {
-                        [...Array(6).keys()].map((w) => {
-                            const firstIndex = w === 0 ? 0 : 7 * (w - 1) + this.state.lengthOfFirstWeek;
-                            const secondIndex = 7 * w + this.state.lengthOfFirstWeek;
+                    <div>
+                        {
+                            [...Array(6).keys()].map((w) => {
+                                const firstIndex = w === 0 ? 0 : 7 * (w - 1) + this.state.lengthOfFirstWeek;
+                                const secondIndex = 7 * w + this.state.lengthOfFirstWeek;
 
-                            return (
-                                <WeekOfMonth
-                                    daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
-                                    key={w}
-                                />
-                            );
-                        })
-                    }
+                                return (
+                                    <WeekOfMonth
+                                        daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
+                                        key={w}
+                                    />
+                                );
+                            })
+                        }
+                    </div>
                 </div>
                 :
                 null
