@@ -15,7 +15,7 @@ export default class App extends Component {
 
         this.state = {
             dropdownOpen: false,
-            view: MONTH
+            view: WEEK
         }
     }
 

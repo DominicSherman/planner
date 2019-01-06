@@ -5,7 +5,7 @@ import '../css/views/DayView.css';
 export default class DayView extends Component {
     render() {
         return (
-            <div className={'DayView row spaceBetween'}>
+            <div className={'DayView column spaceBetween'}>
                 {
                     <div
                         className={'DayView-day'}

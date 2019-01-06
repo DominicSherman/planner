@@ -11,11 +11,11 @@ export default class WeekView extends Component {
         }
 
         return (
-            <div className={'WeekView row spaceBetween'}>
+            <div className={'WeekView row'}>
                 {
                     days.map((day) =>
                         <div
-                            className={'WeekView-day'}
+                            className={'WeekView-day column'}
                         >
                             <div className={'WeekView-dayHeader'}>
                                 <p

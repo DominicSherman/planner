@@ -6,7 +6,7 @@
     align-items: center;
     border: 1px solid black;
     height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
 }
 
 .DayView-dayHeader {

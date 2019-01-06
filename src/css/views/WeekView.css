@@ -1,12 +1,14 @@
 .WeekView {
     text-align: center;
+    margin: 5px;
+    width: 176%;
 }
 
 .WeekView-day {
     align-items: center;
     border: 1px solid black;
     height: 100vh;
-    min-width: 25vw;
+    width: 25vw;
 }
 
 .WeekView-dayHeader {
