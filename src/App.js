@@ -9,19 +9,27 @@ import {DAY, MONTH, WEEK} from './constants/view-types';
 import DayView from './views/DayView';
 import MonthView from './views/MonthView';
 
+const typeToView = {
+    [MONTH]: MonthView,
+    [DAY]: DayView,
+    [WEEK]: WeekView
+};
 export default class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            dropdownOpen: false,
-            view: WEEK
+            dropdownOpen: false
         }
     }
 
     toggle = () => this.setState((prevState) => ({dropdownOpen: !prevState.dropdownOpen}));
 
     render() {
+        const {actions, currView} = this.props;
+
+        const View = typeToView[currView];
+
         return (
             <div>
                 <div className={'App-menuWrapper'}>
@@ -31,24 +39,13 @@ export default class App extends Component {
                     >
                         <DropdownToggle caret>Menu</DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={() => this.setState({view: MONTH})}>Month View</DropdownItem>
-                            <DropdownItem onClick={() => this.setState({view: WEEK})}>Week View</DropdownItem>
-                            <DropdownItem onClick={() => this.setState({view: DAY})}>Day View</DropdownItem>
+                            <DropdownItem onClick={() => actions.setCurrView(MONTH)}>Month View</DropdownItem>
+                            <DropdownItem onClick={() => actions.setCurrView(WEEK)}>Week View</DropdownItem>
+                            <DropdownItem onClick={() => actions.setCurrView(DAY)}>Day View</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>
-                {
-                    this.state.view === MONTH &&
-                    <MonthView/>
-                }
-                {
-                    this.state.view === WEEK &&
-                    <WeekView/>
-                }
-                {
-                    this.state.view === DAY &&
-                    <DayView/>
-                }
+                <View {...this.props} />
             </div>
         );
     }

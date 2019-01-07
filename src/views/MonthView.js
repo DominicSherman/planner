@@ -7,80 +7,38 @@ import {MONTHS, WEEKDAYS} from '../constants/enums';
 import WeekOfMonth from '../components/WeekOfMonth';
 
 export default class MonthView extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            prevMonth: {},
-            currMonth: {},
-            nextMonth: {},
-            daysOfMonth: [],
-            lengthOfFirstWeek: 0
-        }
-    }
-
     componentDidMount() {
-        this.setCurrMonth(moment());
+        this.props.actions.setCurrMonth(moment());
     }
-
-    setDaysOfMonth = (month) => {
-        let daysOfMonth = [];
-
-        for (let i = 1; i <= 31; i++) {
-            if (moment(month).date(i).get('month') === month.month()) {
-                daysOfMonth = [...daysOfMonth, moment(month).date(i)];
-            }
-        }
-
-        this.setState({daysOfMonth});
-        this.setState({lengthOfFirstWeek: 8 - (daysOfMonth[0].day() === 0 ? 7 : daysOfMonth[0].day())});
-    };
-
-    setCurrMonth = (currMonth) => {
-        const prevMonth = moment(currMonth).subtract(1, 'M');
-        const nextMonth = moment(currMonth).add(1, 'M');
-
-        this.setState({currMonth});
-        this.setState({prevMonth});
-        this.setState({nextMonth});
-        this.setDaysOfMonth(currMonth);
-    };
-
-    decrementMonth = () => {
-        this.setCurrMonth(this.state.prevMonth);
-    };
-
-    incrementMonth = () => {
-        this.setCurrMonth(this.state.nextMonth);
-    };
 
     render() {
+        const {actions, currMonth, daysOfMonth, lengthOfFirstWeek} = this.props;
+        const prevMonthValue = MONTHS[moment(currMonth).subtract(1, 'M').month()];
+        const nextMonthValue = MONTHS[moment(currMonth).add(1, 'M').month()];
+
         return (
-            this.state.daysOfMonth.length ?
+            daysOfMonth.length ?
                 <div className={'MonthView-wrapper column'}>
                     <div
                         className={'MonthView-headerWrapper row spaceBetween'}
                     >
                         <div
                             className={'MonthView-monthButton row center'}
-                            onClick={this.decrementMonth}
+                            onClick={actions.decrementMonth}
                         >
-                            <h3>{`< ${MONTHS[this.state.prevMonth.month()]}`}</h3>
+                            <h3>{`< ${prevMonthValue}`}</h3>
                         </div>
                         <h1>
-                            {`${MONTHS[this.state.currMonth.month()]}, ${this.state.currMonth.year()}`}
+                            {`${MONTHS[currMonth.month()]}, ${currMonth.year()}`}
                         </h1>
                         <div
                             className={'MonthView-monthButton row center'}
-                            onClick={this.incrementMonth}
+                            onClick={actions.incrementMonth}
                         >
-                            <h3>{`${MONTHS[this.state.nextMonth.month()]} >`}</h3>
+                            <h3>{`${nextMonthValue} >`}</h3>
                         </div>
                     </div>
-                    <div
-                        className={'row spaceBetween'}
-                        style={{width: '100%'}}
-                    >
+                    <div className={'row spaceBetween hundred'}>
                         {
                             [...Array(7).keys()].map((value) =>
                                 <div
@@ -95,12 +53,12 @@ export default class MonthView extends Component {
                     <div>
                         {
                             [...Array(6).keys()].map((w) => {
-                                const firstIndex = w === 0 ? 0 : 7 * (w - 1) + this.state.lengthOfFirstWeek;
-                                const secondIndex = 7 * w + this.state.lengthOfFirstWeek;
+                                const firstIndex = w === 0 ? 0 : 7 * (w - 1) + lengthOfFirstWeek;
+                                const secondIndex = 7 * w + lengthOfFirstWeek;
 
                                 return (
                                     <WeekOfMonth
-                                        daysToDisplay={this.state.daysOfMonth.slice(firstIndex, secondIndex)}
+                                        daysToDisplay={daysOfMonth.slice(firstIndex, secondIndex)}
                                         key={w}
                                     />
                                 );
