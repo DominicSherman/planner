@@ -1,0 +1,11 @@
+.Header-headerWrapper {
+    align-items: center;
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.Header-textWrapper {
+    align-items: center;
+    width: 100%;
+}

@@ -8,11 +8,6 @@
     cursor: pointer;
 }
 
-.MonthView-headerWrapper {
-    width: 95%;
-    padding-bottom: 2%;
-}
-
 .MonthView-dayHeaderWrapper, .MonthView-dayWrapper {
     width: calc(99vw/7);
     justify-content: center;
