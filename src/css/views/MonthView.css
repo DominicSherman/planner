@@ -3,11 +3,6 @@
     padding: 1%;
 }
 
-.MonthView-monthButton {
-    align-items: center;
-    cursor: pointer;
-}
-
 .MonthView-dayHeaderWrapper, .MonthView-dayWrapper {
     width: calc(99vw/7);
     justify-content: center;

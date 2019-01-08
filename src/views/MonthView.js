@@ -19,7 +19,7 @@ export default class MonthView extends Component {
                                     className={'MonthView-dayHeaderWrapper row'}
                                     key={value}
                                 >
-                                    <h3>{WEEKDAYS[value]}</h3>
+                                    <h2>{WEEKDAYS[value]}</h2>
                                 </div>
                             )
                         }

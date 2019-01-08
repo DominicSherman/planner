@@ -17,7 +17,11 @@ const typeToView = {
 
 export default class App extends Component {
     componentWillMount() {
-        this.props.actions.setCurrMonth(moment());
+        const {actions: {setCurrMonth, setCurrWeek, setCurrDay}} = this.props;
+
+        setCurrMonth(moment());
+        setCurrWeek(moment());
+        setCurrDay(moment());
     }
 
     render() {

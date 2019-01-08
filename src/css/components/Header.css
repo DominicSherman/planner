@@ -1,3 +1,11 @@
+.Header-wrapper {
+    padding-bottom: 2%;
+}
+
+.Header-menuWrapper {
+    padding-bottom: 2%;
+}
+
 .Header-headerWrapper {
     align-items: center;
     padding-top: 1%;
@@ -8,4 +16,9 @@
 .Header-textWrapper {
     align-items: center;
     width: 100%;
+}
+
+.Header-monthButton {
+    align-items: center;
+    cursor: pointer;
 }

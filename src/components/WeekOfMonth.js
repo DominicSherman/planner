@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import moment from 'moment';
+import {isToday} from '../services/date-service';
 
 export default class WeekOfMonth extends Component {
     render() {
@@ -25,7 +26,7 @@ export default class WeekOfMonth extends Component {
                                     {
                                         day &&
                                         <p
-                                            style={day.format('M-D-Y') === moment().format('M-D-Y') ? {fontWeight: 'bold'} : {fontWeight: 'regular'}}
+                                            style={isToday(day) ? {fontWeight: 'bold'} : {fontWeight: 'regular'}}
                                         >
                                             {day.format('Do')}
                                         </p>
