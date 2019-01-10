@@ -25,3 +25,5 @@ export const insertToDoItem = async (text) => {
 };
 
 export const getToDoItems = () => firebase.database().ref('to_do');
+
+export const deleteToDoItem = (itemId) => firebase.database().ref(`to_do/${itemId}`).remove();
