@@ -3,6 +3,7 @@ import moment from 'moment';
 import {MONTHS} from '../constants/enums';
 
 export const WEEK_FORMAT = 'MMM Do';
+export const ITEM_DATE_FORMAT = 'MMM-DD-YYYY hh:mm:ssA ZZ';
 
 export const getMonth = (month) => MONTHS[month.month()];
 

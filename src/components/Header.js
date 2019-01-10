@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button, ButtonGroup} from 'reactstrap';
 
 import '../css/components/Header.css';
-import {DAY, MONTH, WEEK} from '../constants/view-types';
+import {DAY, MONTH, TO_DO, WEEK} from '../constants/view-types';
 import {
     getDayMinusOne,
     getDayPlusOne,
@@ -15,7 +15,7 @@ import {
     getWeekMinusOne,
     getWeekPlusOne,
     WEEK_FORMAT
-} from '../services/date-service';
+} from '../services/moment-service';
 
 export default class Header extends Component {
     getDisplayObject = () => {
@@ -36,34 +36,37 @@ export default class Header extends Component {
         if (currMonth && currWeek && currDay) {
             return {
                 [MONTH]: {
-                    prevText: getMonth(getMonthMinusOne(currMonth)),
+                    prevText: `< ${getMonth(getMonthMinusOne(currMonth))}`,
                     prevOnClick: decrementMonth,
                     headerText: getMonthHeaderText(currMonth),
-                    nextText: getMonth(getMonthPlusOne(currMonth)),
+                    nextText: `${getMonth(getMonthPlusOne(currMonth))} >`,
                     nextOnClick: incrementMonth
                 },
                 [WEEK]: {
-                    prevText: getFirstDayOfWeek(getWeekMinusOne(currWeek)).format(WEEK_FORMAT),
+                    prevText: `< ${getFirstDayOfWeek(getWeekMinusOne(currWeek)).format(WEEK_FORMAT)}`,
                     prevOnClick: decrementWeek,
                     headerText: getWeekHeaderText(currWeek),
-                    nextText: getFirstDayOfWeek(getWeekPlusOne(currWeek)).format(WEEK_FORMAT),
+                    nextText: `${getFirstDayOfWeek(getWeekPlusOne(currWeek)).format(WEEK_FORMAT)} >`,
                     nextOnClick: incrementWeek
                 },
                 [DAY]: {
-                    prevText: getDayMinusOne(currDay).format('dddd, MMMM Do'),
+                    prevText: `< ${getDayMinusOne(currDay).format('dddd, MMMM Do')}`,
                     prevOnClick: decrementDay,
                     headerText: currDay.format('dddd, MMMM Do'),
-                    nextText: getDayPlusOne(currDay).format('dddd, MMMM Do'),
+                    nextText: `${getDayPlusOne(currDay).format('dddd, MMMM Do')} >`,
                     nextOnClick: incrementDay
+                },
+                [TO_DO]: {
+                    prevText: '',
+                    prevOnClick: null,
+                    headerText: 'To Do',
+                    nextText: '',
+                    nextOnClick: null
                 }
             }
         }
 
-        return {
-            [MONTH]: {},
-            [WEEK]: {},
-            [DAY]: {}
-        };
+        return {[TO_DO]: {}};
     };
 
     render() {
@@ -94,6 +97,12 @@ export default class Header extends Component {
                             >
                                 Day View
                             </Button>
+                            <Button
+                                onClick={() => setCurrView(TO_DO)}
+                                size={'30'}
+                            >
+                                To Do
+                            </Button>
                         </ButtonGroup>
                     </div>
                     <div className={'Header-textWrapper row spaceBetween'}>
@@ -101,14 +110,14 @@ export default class Header extends Component {
                             className={'Header-monthButton row center'}
                             onClick={displayValues.prevOnClick}
                         >
-                            <h5>{`< ${displayValues.prevText}`}</h5>
+                            <h5>{displayValues.prevText}</h5>
                         </div>
                         <h1>{displayValues.headerText}</h1>
                         <div
                             className={'Header-monthButton row center'}
                             onClick={displayValues.nextOnClick}
                         >
-                            <h5>{`${displayValues.nextText} >`}</h5>
+                            <h5>{displayValues.nextText}</h5>
                         </div>
                     </div>
                 </div>

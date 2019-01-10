@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import '../css/views/WeekView.css';
-import {isToday} from '../services/date-service';
+import {isToday} from '../services/moment-service';
 
 export default class WeekView extends Component {
     render() {

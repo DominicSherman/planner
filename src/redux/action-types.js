@@ -4,3 +4,5 @@ export const SET_LENGTH_OF_FIRST_WEEK = 'SET_LENGTH_OF_FIRST_WEEK';
 export const SET_CURR_VIEW = 'SET_CURR_VIEW';
 export const SET_CURR_WEEK = 'SET_CURR_WEEK';
 export const SET_CURR_DAY = 'SET_CURR_DAY';
+export const SET_CURR_EDITING_ITEM = 'SET_CURR_EDITING_ITEM';
+export const SET_TO_DO_ITEMS = 'SET_TO_DO_ITEMS';

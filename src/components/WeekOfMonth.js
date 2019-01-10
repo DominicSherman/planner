@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import moment from 'moment';
-import {isToday} from '../services/date-service';
+import {isToday} from '../services/moment-service';
 
 export default class WeekOfMonth extends Component {
     render() {
