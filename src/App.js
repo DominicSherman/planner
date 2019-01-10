@@ -8,6 +8,7 @@ import {DAY, MONTH, WEEK} from './constants/view-types';
 import DayView from './views/DayView';
 import MonthView from './views/MonthView';
 import Header from './components/Header';
+import {initializeFirebase} from './services/firebase-service';
 
 const typeToView = {
     [MONTH]: MonthView,
@@ -18,10 +19,11 @@ const typeToView = {
 export default class App extends Component {
     componentWillMount() {
         const {actions: {setCurrMonth, setCurrWeek, setCurrDay}} = this.props;
-
         setCurrMonth(moment());
+
         setCurrWeek(moment());
         setCurrDay(moment());
+        initializeFirebase();
     }
 
     render() {
