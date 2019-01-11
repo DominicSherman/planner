@@ -12,13 +12,19 @@ export default class ToDoItem extends Component {
                 className={'ToDoItem-wrapper row spaceBetween'}
                 style={index === numItems - 1 ? {border: '0'} : null}
             >
-                <p>{item.text}</p>
-                <img
-                    alt={''}
-                    src={trashIcon}
-                    className={'ToDo-icon'}
+                <div className={'ToDoItem-textWrapper'}>
+                    <p>{item.text}</p>
+                </div>
+                <div
+                    className={'ToDoItem-iconWrapper center'}
                     onClick={() => deleteToDoItem(item.itemId)}
-                />
+                >
+                    <img
+                        alt={''}
+                        src={trashIcon}
+                        className={'ToDoItem-icon'}
+                    />
+                </div>
             </div>
         )
     }

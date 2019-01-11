@@ -24,6 +24,10 @@
     outline: none;
 }
 
+.ToDo-input::placeholder {
+    color: lightgrey;
+}
+
 .ToDo-itemsWrapper {
     border: 1px solid black;
     margin-left: 19%;

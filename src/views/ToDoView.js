@@ -27,17 +27,11 @@ export default class ToDoView extends Component {
     getValue = () => this.props.currEditingItem ? this.props.currEditingItem : '';
 
     render() {
-        const {actions: {setCurrEditingItem}, currEditingItem, toDoItems} = this.props;
+        const {actions: {setCurrEditingItem}, toDoItems} = this.props;
 
         return (
             <div className={'column'}>
                 <div className={'ToDo-wrapper center'}>
-                    {
-                        !currEditingItem &&
-                        <div className={'ToDo-label'}>
-                            <p>{'New item'}</p>
-                        </div>
-                    }
                     <div className={'ToDo-inputWrapper row'}>
                         <input
                             className={'ToDo-input'}
@@ -45,6 +39,7 @@ export default class ToDoView extends Component {
                             type={'text'}
                             value={this.getValue()}
                             onChange={(event) => setCurrEditingItem(event.target.value)}
+                            placeholder={'New item'}
                         />
                     </div>
                 </div>
