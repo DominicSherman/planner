@@ -1,9 +1,13 @@
 .ToDoItem-wrapper {
-    padding: 1% 1% 1% 1%;
+    padding: 1% 3% 1% 1%;
     border-bottom: 1px solid black;
 }
 
 .ToDo-icon {
     width: 2%;
     height: 2%;
+}
+
+.ToDo-icon:hover {
+    cursor: pointer;
 }

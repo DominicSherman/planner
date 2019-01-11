@@ -46,8 +46,8 @@ export default class ToDoView extends Component {
                             value={this.getValue()}
                             onChange={(event) => setCurrEditingItem(event.target.value)}
                         />
-                    </div></div>
-
+                    </div>
+                </div>
                 <div className={'ToDo-itemsWrapper'}>
                     {
                         toDoItems.map((item, index) =>
