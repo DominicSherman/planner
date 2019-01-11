@@ -1,4 +1,4 @@
-### Planner
+# Planner
 
 ## Running Locally
 
