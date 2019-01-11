@@ -19,10 +19,10 @@ const typeToView = {
 };
 
 export default class App extends Component {
-    componentWillMount() {
+    componentDidMount() {
         const {actions: {setCurrMonth, setCurrWeek, setCurrDay}} = this.props;
-        setCurrMonth(moment());
 
+        setCurrMonth(moment());
         setCurrWeek(moment());
         setCurrDay(moment());
         initializeFirebase();
