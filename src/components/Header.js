@@ -66,7 +66,10 @@ export default class Header extends Component {
             }
         }
 
-        return {[TO_DO]: {}};
+        return {
+            [TO_DO]: {},
+            [MONTH]: {}
+        };
     };
 
     render() {

@@ -8,14 +8,14 @@ import {
     SET_LENGTH_OF_FIRST_WEEK,
     SET_TO_DO_ITEMS
 } from './action-types';
-import {TO_DO} from '../constants/view-types';
+import {MONTH} from '../constants/view-types';
 
 const defaultState = {
     currDay: null,
     currEditingItem: null,
     currMonth: null,
     currWeek: null,
-    currView: TO_DO,
+    currView: MONTH,
     daysOfMonth: [],
     lengthOfFirstWeek: 0,
     toDoItems: []
